@@ -1,0 +1,70 @@
+{
+  "name": "@livechat/agent-app-sdk",
+  "version": "1.0.0",
+  "description": "SDK for extending LiveChat's Agent App",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/livechat/agent-app-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/livechat/agent-app-sdk/issues"
+  },
+  "homepage": "https://github.com/livechat/agent-app-widget-sdk#readme",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "main": "dist/agentapp.cjs.js",
+  "module": "dist/agentapp.es.js",
+  "unpkg": "dist/agentapp.umd.min.js",
+  "typings": "types/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "prebuild": "rimraf dist && rimraf types"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.2.0",
+    "@livechat/postmessage": "0.1.0-3",
+    "@livechat/mitt": "0.1.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.5",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.1.5",
+    "core-js": "^3.0.1",
+    "husky": "^2.1.0",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.17.0",
+    "regenerator-runtime": "^0.13.2",
+    "rimraf": "^2.6.2",
+    "rollup": "^1.10.1",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-replace": "^2.1.0",
+    "rollup-plugin-typescript2": "^0.21.0",
+    "rollup-plugin-uglify": "^6.0.1",
+    "typescript": "^3.4.5"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 80
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.md": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
