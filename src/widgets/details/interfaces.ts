@@ -44,7 +44,7 @@ export interface ICustomerProfile {
         groupID: string;
       }
     | {};
-  source: string;
+  source: 'chats' | 'archives' | 'customers';
 }
 
 export interface ICustomerProfileHidden {

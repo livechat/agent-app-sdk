@@ -48,7 +48,6 @@ function DetailsWidget(
     putMessage(text: string): Promise<void> {
       return sendMessage('put_message', text);
     },
-
     watchMessages(): Promise<void> {
       return sendMessage('watch_messages');
     },
