@@ -133,7 +133,7 @@ Get the last recorded profile of the customer. Returns the `ICustomerProfile` ob
 
 Append the text to the message box of the currently opened chat.
 
-#### `watch_messages(): Promise<void>`
+#### `watchMessages(): Promise<void>`
 
 Opt into receiving the `message` event.
 
