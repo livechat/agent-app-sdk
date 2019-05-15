@@ -1,6 +1,6 @@
 # LiveChat Agent App SDK
 
-This SDK is a set of tools that will help you integrate your apps with [LiveChat's Agent App](https://my.livechatinc.com/).
+This SDK is a set of tools that will help you integrate your apps with the [LiveChat Agent App](https://my.livechatinc.com/).
 
 ## Instalation
 
@@ -10,9 +10,9 @@ The package can be installed directly from NPM.
 npm install --save @livechat/agent-app-sdk
 ```
 
-The NPM package is distrubted both as a CommonJS and ES6 module and it should be used together with a module bundler like Webpack or Rollup.
+The NPM package is distributed both as a CommonJS and ES6 module. It should be used together with a module bundler, such as Webpack or Rollup.
 
-We also distrubute an UMD build of the package that can be used directly in the browser.
+We also distrubute a UMD build of the package, which can be used directly in the browser.
 
 ```html
 <script src="https://unpkg.com/@livechat/agent-app-sdk@latest/dist/agentapp.umd.min.js"></script>
@@ -20,7 +20,7 @@ We also distrubute an UMD build of the package that can be used directly in the 
 
 ## Basic usage
 
-Just use one of the methods exported by the SDK.
+Use one of the methods exported by the SDK.
 
 ### `createDetailsWidget(): Promise<IDetailsWidget>`
 
@@ -38,11 +38,11 @@ createDetailsWidget().then(widget => {
 
 All widgets share a common interface.
 
-- `on(eventName: string, eventHandler: (data: any) => void): void`) - register the event handler to be called when the given event occurs
+- `on(eventName: string, eventHandler: (data: any) => void): void`) - registers the event handler to be called when a given event occurs
 
-- `off(eventName: string, eventHandler: (data: any) => void): void`) - unregister the previously registered handler from the event
+- `off(eventName: string, eventHandler: (data: any) => void): void`) - unregisters the previously registered handler from the event
 
-You can use it to track events happening in the Agent App.
+You can use it to track the events happening in the Agent App.
 
 ```js
 import { createDetailsWidget } from ‘@livechat/agent-app-sdk’;
@@ -62,7 +62,7 @@ createDetailsWidget().then(widget => {
 });
 ```
 
-Each type of widget offers a different set of events that you can listen to. Check them out in the descriptions below.
+Each widget type offers a different set of events that you can listen to. Check them out in the descriptions below.
 
 ## Details widget (`IDetailsWidget`)
 
@@ -72,7 +72,7 @@ A type of widget that has access to the Chat Details context.
 
 #### `customer_profile`
 
-Emitted when the agent opens a conversation within Chats, Archives or the customer profile in the Customers sections. The handler will be passed a customer profile object:
+Emitted when an agent opens a conversation within Chats, Archives, or the customer profile in the Customers sections. The handler will get the customer profile object as an argument:
 
 ```ts
 interface ICustomerProfile {
@@ -100,7 +100,7 @@ interface ICustomerProfile {
 
 #### `message`
 
-Emitted on every chat message (both outgoing and incoming). You have to enable the event using the `watchMessages` method first in order to use it. The handler gets the message object:
+Emitted on every chat message (both outgoing and incoming). To use this event, first, you have to enable it with the `watchMessages` method. The handler gets the message object:
 
 ```ts
 interface IMessage {
@@ -113,7 +113,7 @@ interface IMessage {
 
 #### `customer_details_section_button_click`
 
-Emitted when a button within a custom section is clicked in Customer Details. The handler is passed the following payload:
+Emitted when you click a button located in a custom section in Customer Details. The handler gets the following payload:
 
 ```ts
 interface ICustomerDetailsSectionButtonClick {
@@ -127,19 +127,19 @@ The `buttonId` property reflects the `id` specified for the button in the sectio
 
 #### `getCustomerProfile(): ICustomerProfile | null`
 
-Get the last recorded profile of the customer. Returns the `ICustomerProfile` object identical to the one emitted by the `customer_profile` event or `null` if none profile was registered.
+Gets the customer profile recorded most recently. Returns the `ICustomerProfile` object, which is identical to the one emitted by the `customer_profile` event or `null` (if no profile was registered).
 
 #### `putMessage(text: string): Promise<void>`
 
-Append the text to the message box of the currently opened chat.
+Appends the text to the message box of the currently opened chat.
 
 #### `watchMessages(): Promise<void>`
 
-Opt into receiving the `message` event.
+Opts into receiving the `message` event.
 
 #### `modifySection(section): Promise<void>`
 
-This method allows you to modify any custom section that you declared in the initial state of the widget in the Developers Console. The `section` argument should be an object implementing the section defintion interface, for example:
+With this method, you can modify any custom section declared in the widget's initial state in Developers Console. The `section` argument should be an object implementing the section defintion interface, for example:
 
 ```javascript
 const section = {
@@ -160,5 +160,4 @@ const section = {
 widget.modifySection(section);
 ```
 
-The given section `title` must match the one specified in the initial state, otherwise the section won't change. Also, Agent App ignores commands that do not contain a valid section definition, so make sure that
-definition you're sending is correct.
+The `title` of a given section has to match the one specified in the initial state. Otherwise, the section won't change. Also, the Agent App ignores the commands without valid section definitions. Make sure that the definition you're sending is correct.
