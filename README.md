@@ -98,19 +98,6 @@ interface ICustomerProfile {
 }
 ```
 
-#### `message`
-
-Emitted on every chat message (both outgoing and incoming). To use this event, first, you have to enable it with the `watchMessages` method. The handler gets the message object:
-
-```ts
-interface IMessage {
-  chat: string;
-  message: string;
-  message_id: string;
-  message_source: string;
-}
-```
-
 #### `customer_details_section_button_click`
 
 Emitted when you click a button located in a custom section in Customer Details. The handler gets the following payload:
@@ -132,10 +119,6 @@ Gets the customer profile recorded most recently. Returns the `ICustomerProfile`
 #### `putMessage(text: string): Promise<void>`
 
 Appends the text to the message box of the currently opened chat.
-
-#### `watchMessages(): Promise<void>`
-
-Opts into receiving the `message` event.
 
 #### `modifySection(section): Promise<void>`
 
