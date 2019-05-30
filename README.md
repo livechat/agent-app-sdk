@@ -144,3 +144,19 @@ widget.modifySection(section);
 ```
 
 The `title` of a given section has to match the one specified in the initial state. Otherwise, the section won't change. Also, the Agent App ignores the commands without valid section definitions. Make sure that the definition you're sending is correct.
+
+## MessageBox widget (`IMessageBoxWidget`)
+
+### Methods
+
+#### `putMessage(): IRichMessage | string`
+
+Set the message to be held by MessageBox and sent by next _Send_ button clicked by the agent. The message won't be sent automatically after calling this method. The message accepts the regular message as `string` or rich messages that must implement `IRichMessage` interface.
+
+```javascript
+  const richMessage = {
+
+  };
+
+  widget.putMessage(richMessage);
+```
