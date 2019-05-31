@@ -36,7 +36,7 @@ createDetailsWidget().then(widget => {
 
 ### `createMessageBoxWidget(): Promise<IDetailsWidget>`
 
-Creates a widget instance to be used in the MessageBox.
+Creates a widget instance to be used in MessageBox.
 
 ```js
 import { createMessageBoxWidget } from ‘@livechat/agent-app-sdk’;
@@ -163,7 +163,7 @@ The `title` of a given section has to match the one specified in the initial sta
 
 #### `putMessage(msg: IRichMessage | string): Promise<void>`
 
-Set the message to be held by MessageBox and sent by next _Send_ button clicked by the agent. The message won't be sent automatically after calling this method. The message accepts the regular message as `string` or rich messages that must implement `IRichMessage` interface.
+Sets a message to be stored by MessageBox. Calling this method does not automatically send the message right away. The message is sent once an agent clicks the _Send_ button. The message accepts the regular message type as `string` or rich messages. The latter must implement the `IRichMessage` interface.
 
 ```javascript
   const richMessage = {
@@ -183,11 +183,11 @@ Set the message to be held by MessageBox and sent by next _Send_ button clicked 
 
 - `custom_id`, `properties` and `elements` are optional
 - `elements` may contain 1-10 element objects
-- all `elements` properties are optional: `title`, `subtitle`, `image` and `buttons`
+- all `elements` properties are optional: `title`, `subtitle`, `image`, and `buttons`
 - property `url` on `image` is required
-- optional `image` properties: `name`, `content_type`, `size`, `width` and `height`
+- optional `image` properties: `name`, `content_type`, `size`, `width`, and `height`
 - `buttons` may contain 1-11 button objects
 - `template_id` describes how the event should be presented in an app
-- `elements.buttons.postback_id` describes the action sent via `send_rich_message_postback` method
-- multiple buttons (even from different elements) can contain the same `postback_id`; calling `send_rich_message_postback` with this id will add user to all these buttons at once.
-- `elements.buttons.user_ids` describes users that sent the postback with `"toggled": true`
+- `elements.buttons.postback_id` describes the action sent via the `send_rich_message_postback` method
+- multiple buttons (even from different elements) can contain the same `postback_id`; calling `send_rich_message_postback` with this id will add a user to all these buttons at once.
+- `elements.buttons.user_ids` describes users who sent the postback with `"toggled": true`
