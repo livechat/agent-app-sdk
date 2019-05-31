@@ -161,7 +161,7 @@ The `title` of a given section has to match the one specified in the initial sta
 
 ### Methods
 
-#### `putMessage(): IRichMessage | string`
+#### `putMessage(msg: IRichMessage | string): Promise<void>`
 
 Set the message to be held by MessageBox and sent by next _Send_ button clicked by the agent. The message won't be sent automatically after calling this method. The message accepts the regular message as `string` or rich messages that must implement `IRichMessage` interface.
 
