@@ -34,6 +34,18 @@ createDetailsWidget().then(widget => {
 });
 ```
 
+### `createMessageBoxWidget(): Promise<IDetailsWidget>`
+
+Creates a widget instance to be used in the MessageBox.
+
+```js
+import { createMessageBoxWidget } from ‘@livechat/agent-app-sdk’;
+
+createMessageBoxWidget().then(widget => {
+  // do something with the widget
+});
+```
+
 ## Widgets (`IWidget`)
 
 All widgets share a common interface.
@@ -155,8 +167,27 @@ Set the message to be held by MessageBox and sent by next _Send_ button clicked 
 
 ```javascript
   const richMessage = {
-
+    template_id: "cards",
+    elements: [
+      {
+        title: "My cat photo",
+        image: "imgs/john-the-cat.jpg"
+      }
+    ]
   };
 
   widget.putMessage(richMessage);
 ```
+
+### Rich Message object format
+
+- `custom_id`, `properties` and `elements` are optional
+- `elements` may contain 1-10 element objects
+- all `elements` properties are optional: `title`, `subtitle`, `image` and `buttons`
+- property `url` on `image` is required
+- optional `image` properties: `name`, `content_type`, `size`, `width` and `height`
+- `buttons` may contain 1-11 button objects
+- `template_id` describes how the event should be presented in an app
+- `elements.buttons.postback_id` describes the action sent via `send_rich_message_postback` method
+- multiple buttons (even from different elements) can contain the same `postback_id`; calling `send_rich_message_postback` with this id will add user to all these buttons at once.
+- `elements.buttons.user_ids` describes users that sent the postback with `"toggled": true`
