@@ -21,7 +21,8 @@
   "typings": "types/index.d.ts",
   "scripts": {
     "build": "rollup -c",
-    "prebuild": "rimraf dist && rimraf types"
+    "prebuild": "rimraf dist && rimraf types",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@babel/runtime": "^7.2.0",
