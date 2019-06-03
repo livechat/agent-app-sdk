@@ -10,7 +10,7 @@
   "bugs": {
     "url": "https://github.com/livechat/agent-app-sdk/issues"
   },
-  "homepage": "https://github.com/livechat/agent-app-widget-sdk#readme",
+  "homepage": "https://github.com/livechat/agent-app-sdk#readme",
   "files": [
     "dist",
     "types"
