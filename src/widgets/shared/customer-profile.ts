@@ -14,8 +14,7 @@ export interface ICustomerProfile {
   };
   email?: string;
   chat: {
-    threadId?: string;
-    chatId?: string;
+    id: string;
     groupID: string;
     preChatSurvey?: { question: string; answer: string }[];
   };
