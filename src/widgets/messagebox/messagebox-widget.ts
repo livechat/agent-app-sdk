@@ -1,5 +1,7 @@
 import { createWidget } from '../shared/widget';
+import { withAmplitude } from '../shared/amplitude';
 import { withCustomerProfile } from '../shared/customer-profile';
+import { withRichMessages } from '../shared/rich-messages';
 import { IConnection, createConnection } from '../connection';
 import { IMessageBoxWidgetApi, IRichMessage } from './interfaces';
 
@@ -16,7 +18,7 @@ function MessageBoxWidget(connection: IConnection) {
     }
   });
 
-  const widget = withCustomerProfile(base);
+  const widget = withAmplitude(withRichMessages(withCustomerProfile(base)));
 
   return widget;
 }
