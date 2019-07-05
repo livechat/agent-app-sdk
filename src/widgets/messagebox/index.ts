@@ -1,1 +1,4 @@
-export { default as createMessageBoxWidget } from './messagebox-widget';
+export {
+  default as createMessageBoxWidget,
+  IMessageBoxWidget
+} from './messagebox-widget';

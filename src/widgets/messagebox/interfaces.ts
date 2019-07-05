@@ -1,12 +1,5 @@
-import { IWidget } from '../widget';
-import { ConnectionEmitter } from '../connection';
-import { IWidgetWithAmplitude } from '../common/amplitude';
-
-
-export interface IMessageBoxWidget
-  extends IWidget,
-    IWidgetWithAmplitude {
-  putMessage(message: IRichMessage | string): Promise<void>;
+export interface IMessageBoxWidgetApi {
+  putMessage(message: IRichMessage | string): void;
 }
 
 export interface IRichMessage {
