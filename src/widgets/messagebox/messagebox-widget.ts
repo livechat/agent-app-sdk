@@ -1,15 +1,12 @@
+import { createWidget } from '../shared/widget';
+import { withAmplitude } from '../shared/amplitude';
+import { withCustomerProfile } from '../shared/customer-profile';
+import { withRichMessages } from '../shared/rich-messages';
 import { IConnection, createConnection } from '../connection';
-import { IMessageBoxWidget, IRichMessage } from './interfaces';
-import Widget from '../widget';
-import withAmplitude from '../common/amplitude';
-import withRichMessages from '../common/rich-messages';
+import { IMessageBoxWidgetApi, IRichMessage } from './interfaces';
 
-function MessageBoxWidget(
-  connection: IConnection<{}>
-): IMessageBoxWidget {
-  const widget = withRichMessages(withAmplitude(
-    {
-    ...Widget(connection),
+function MessageBoxWidget(connection: IConnection) {
+  const base = createWidget<IMessageBoxWidgetApi, {}>(connection, {
     putMessage(msg: IRichMessage | string): Promise<void> {
       let data;
       if (typeof msg === 'string') {
@@ -19,10 +16,15 @@ function MessageBoxWidget(
       }
       return connection.sendMessage('put_messagebox_message', data);
     }
-  }));
+  });
+
+  const widget = withAmplitude(withRichMessages(withCustomerProfile(base)));
 
   return widget;
 }
+
+export interface IMessageBoxWidget
+  extends ReturnType<typeof MessageBoxWidget> {}
 
 export default function createMessageBoxWidget(): Promise<IMessageBoxWidget> {
   return createConnection().then(connection => MessageBoxWidget(connection));

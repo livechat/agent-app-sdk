@@ -1,18 +1,13 @@
 import mitt from '@livechat/mitt';
 import * as drivers from './driver';
-import {
-  IConnectionDriver,
-  IConnectionEvents,
-  IConnection,
-  IInboxMessage
-} from './interfaces';
+import { IConnectionDriver, IConnection, IInboxMessage } from './interfaces';
 import { getQueryParam } from '../../utils/query-params';
 
 const PLUGIN_ID_PARAM = 'plugin_id';
 const CONNECTION_PARAM = 'connection';
 const MESSAGE_PREFIX = 'livechat:';
 
-function Connection<Events extends IConnectionEvents>(
+function Connection<Events>(
   driver: IConnectionDriver,
   pluginId: string
 ): IConnection<Events> {
@@ -45,9 +40,9 @@ function Connection<Events extends IConnectionEvents>(
   };
 }
 
-export default function createConnection<
-  Events extends IConnectionEvents
->(): Promise<IConnection<Events>> {
+export default function createConnection<Events>(): Promise<
+  IConnection<Events>
+> {
   const pluginId = getQueryParam(PLUGIN_ID_PARAM);
   const usePlainConnection = getQueryParam(CONNECTION_PARAM) === 'plain';
   const driverPromise = usePlainConnection
