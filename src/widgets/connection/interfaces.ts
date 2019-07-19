@@ -1,8 +1,12 @@
 import { Mitt } from '@livechat/mitt';
 
-type ConnectionEvents = { [event: string]: any };
+export interface IConnectionEvents {
+  [event: string]: any;
+}
 
-export type ConnectionEmitter<Events = ConnectionEvents> = Mitt<Events>;
+export type ConnectionEmitter<
+  Events extends IConnectionEvents = IConnectionEvents
+> = Mitt<Events>;
 
 export type ConnectionListener = (message: IInboxMessage) => void;
 
@@ -11,7 +15,7 @@ export interface IConnectionDriver {
   send(message: IOutboxMessage): Promise<void>;
 }
 
-export interface IConnection<Events = ConnectionEvents> {
+export interface IConnection<Events = IConnectionEvents> {
   emitter: ConnectionEmitter<Events>;
   sendMessage: (name: string, data?: any) => Promise<void>;
 }

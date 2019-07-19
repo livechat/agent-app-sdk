@@ -1,2 +1,6 @@
 export { default as createConnection } from './connection';
-export { IConnection, ConnectionEmitter } from './interfaces';
+export {
+  IConnection,
+  ConnectionEmitter,
+  IConnectionEvents
+} from './interfaces';
