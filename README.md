@@ -100,12 +100,11 @@ interface ICustomerProfile {
     timezone: string;
   };
   email?: string;
-  chat:
-    | {
-        id: string;
-        groupID: string;
-      }
-    | {};
+  chat: {
+    id?: string;
+    groupID: string;
+    preChatSurvey: { question: string; answer: string }[];
+  };
   source: 'chats' | 'archives' | 'customers';
 }
 ```
@@ -159,6 +158,12 @@ The `title` of a given section has to match the one specified in the initial sta
 
 ## MessageBox widget (`IMessageBoxWidget`)
 
+### Events
+
+#### `customer_profile`
+
+Emitted after the widget has been opened in the MessageBox. The handler will get a `ICustomerProfile` object (check the documentation for the `customer_profile` event in the [Details widget](#details-widget-idetailswidget) to see the how the object is structured).
+
 ### Methods
 
 #### `putMessage(msg: IRichMessage | string): Promise<void>`
@@ -166,18 +171,22 @@ The `title` of a given section has to match the one specified in the initial sta
 Sets a message to be stored by MessageBox. Calling this method does not automatically send the message right away. The message is sent once an agent clicks the _Send_ button. The message accepts the regular message type as `string` or rich messages. The latter must implement the `IRichMessage` interface.
 
 ```javascript
-  const richMessage = {
-    template_id: "cards",
-    elements: [
-      {
-        title: "My cat photo",
-        image: "imgs/john-the-cat.jpg"
-      }
-    ]
-  };
+const richMessage = {
+  template_id: 'cards',
+  elements: [
+    {
+      title: 'My cat photo',
+      image: 'imgs/john-the-cat.jpg'
+    }
+  ]
+};
 
-  widget.putMessage(richMessage);
+widget.putMessage(richMessage);
 ```
+
+#### `getCustomerProfile(): ICustomerProfile | null`
+
+Gets the customer profile recorded most recently. Returns the `ICustomerProfile` object, which is identical to the one emitted by the `customer_profile` event or `null` (if no profile was registered).
 
 ### Rich Message object format
 

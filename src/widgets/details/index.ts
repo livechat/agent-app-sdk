@@ -1,1 +1,4 @@
-export { default as createDetailsWidget } from './details-widget';
+export {
+  default as createDetailsWidget,
+  IDetailsWidget
+} from './details-widget';
