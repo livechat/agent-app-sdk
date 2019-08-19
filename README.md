@@ -164,6 +164,10 @@ The `title` of a given section has to match the one specified in the initial sta
 
 Emitted after the widget has been opened in the MessageBox. The handler will get a `ICustomerProfile` object (check the documentation for the `customer_profile` event in the [Details widget](#details-widget-idetailswidget) to see the how the object is structured).
 
+#### `message_sent`
+
+Emitted after the message set using the [`putMessage`] method has been sent by the agent.
+
 ### Methods
 
 #### `putMessage(msg: IRichMessage | string): Promise<void>`

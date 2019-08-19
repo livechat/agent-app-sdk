@@ -2,6 +2,10 @@ export interface IMessageBoxWidgetApi {
   putMessage(message: IRichMessage | string): void;
 }
 
+export interface IMessageBoxWidgetEvents {
+  message_sent: undefined;
+}
+
 export interface IRichMessage {
   template_id: 'cards' | 'quick_replies';
   elements: IRichMessageElement[];
