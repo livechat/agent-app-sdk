@@ -111,7 +111,7 @@ interface ICustomerProfile {
 
 #### `customer_details_section_button_click`
 
-Emitted when you click a button located in a custom section in Customer Details. The handler gets the following payload:
+Emitted when agent clicks a button located in a custom section in Customer Details. The handler gets the following payload:
 
 ```ts
 interface ICustomerDetailsSectionButtonClick {
@@ -162,11 +162,11 @@ The `title` of a given section has to match the one specified in the initial sta
 
 #### `customer_profile`
 
-Emitted after the widget has been opened in the MessageBox. The handler will get a `ICustomerProfile` object (check the documentation for the `customer_profile` event in the [Details widget](#details-widget-idetailswidget) to see the how the object is structured).
+Emitted after the widget is opened in the MessageBox. The handler will get a `ICustomerProfile` object (check the documentation for the `customer_profile` event in the [Details widget](#details-widget-idetailswidget) to see the how the object is structured).
 
 #### `message_sent`
 
-Emitted after the message set using the [`putMessage`] method has been sent by the agent.
+Emitted after the message is sent by the agent. Keep in mind that the message has to be set with [`putMessage`] method in order to be sent.
 
 ### Methods
 
