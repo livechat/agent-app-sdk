@@ -2,6 +2,8 @@
 
 This SDK is a set of tools that will help you integrate your apps with the [LiveChat Agent App](https://my.livechatinc.com/).
 
+For full documentation please head to [LiveChat Docs](https://developers.livechatinc.com/docs/extending-ui/extending-agent-app/).
+
 ## Installation
 
 The package can be installed directly from NPM.
