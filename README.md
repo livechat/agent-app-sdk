@@ -160,7 +160,7 @@ The `title` of a given section has to match the one specified in the initial sta
 
 #### `setNotifications({ fullscreen?: number }): Promise<void>`
 
-Displays a notification in one of the supported app locations. Only one location is supported at this moment (`fullscreen`) – it displays a red badge above FullScreen app icon.
+Displays a notification in one of the supported app locations. Only one location is supported at this moment (`fullscreen`) – it displays a red badge on top of the FullScreen app icon.
 
 ## MessageBox widget (`IMessageBoxWidget`)
 
