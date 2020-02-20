@@ -158,6 +158,10 @@ widget.modifySection(section);
 
 The `title` of a given section has to match the one specified in the initial state. Otherwise, the section won't change. Also, the Agent App ignores the commands without valid section definitions. Make sure that the definition you're sending is correct.
 
+#### `setNotifications({ fullscreen?: number }): Promise<void>`
+
+Displays a notification in one of the supported app locations. Only one location is supported at this moment (`fullscreen`) – it displays a red badge above FullScreen app icon.
+
 ## MessageBox widget (`IMessageBoxWidget`)
 
 ### Events
