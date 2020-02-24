@@ -158,10 +158,6 @@ widget.modifySection(section);
 
 The `title` of a given section has to match the one specified in the initial state. Otherwise, the section won't change. Also, the Agent App ignores the commands without valid section definitions. Make sure that the definition you're sending is correct.
 
-#### `setNotifications({ fullscreen?: number }): Promise<void>`
-
-Displays a notification in one of the supported app locations. Only one location is supported at this moment (`fullscreen`) – it displays a red badge on top of the FullScreen app icon.
-
 ## MessageBox widget (`IMessageBoxWidget`)
 
 ### Events
@@ -210,3 +206,15 @@ Gets the customer profile recorded most recently. Returns the `ICustomerProfile`
 - `elements.buttons.postback_id` describes the action sent via the `send_rich_message_postback` method
 - multiple buttons (even from different elements) can contain the same `postback_id`; calling `send_rich_message_postback` with this id will add a user to all these buttons at once.
 - `elements.buttons.user_ids` describes users who sent the postback with `"toggled": true`
+
+## Fullscreen widget (`IFullscreenWidget`)
+
+### Events
+
+This widget currently does not support any events.
+
+### Methods
+
+#### `displayNotification(count: number | null): Promise<void>`
+
+Displays a red badge on top of the Fullscreen app icon. Use this to notify Agents there’s something important inside the widget. Make sure Agents can dismiss the notification to avoid cluttered UI.
