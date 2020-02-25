@@ -48,6 +48,18 @@ createMessageBoxWidget().then(widget => {
 });
 ```
 
+### `createFullscreenWidget(): Promise<IFullscreenWidget>`
+
+Creates a widget instance to be used as a Fullscreen app.
+
+```js
+import { createFullscreenWidget } from ‘@livechat/agent-app-sdk’;
+
+createFullscreenWidget().then(widget => {
+  // do something with the widget
+});
+```
+
 ## Widgets (`IWidget`)
 
 All widgets share a common interface.
