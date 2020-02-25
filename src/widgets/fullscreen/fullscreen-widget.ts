@@ -9,7 +9,7 @@ function FullscreenWidget(connection: IConnection<IFullscreenWidgetEvents>) {
     {
       setNotificationBadge(count: number | null): Promise<void> {
         return connection.sendMessage(
-          'set_fullscreen_app_notification_badge',
+          'set_fullscreen_widget_notification_badge',
           count
         );
       }
