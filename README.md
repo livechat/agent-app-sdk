@@ -215,6 +215,6 @@ This widget currently does not support any events.
 
 ### Methods
 
-#### `displayNotification(count: number | null): Promise<void>`
+#### `setNotificationBadge(count: number | null): Promise<void>`
 
 Displays a red badge on top of the Fullscreen app icon. Use this to notify Agents there’s something important inside the widget. Make sure Agents can dismiss the notification to avoid cluttered UI.

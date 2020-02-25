@@ -7,8 +7,11 @@ function FullscreenWidget(connection: IConnection<IFullscreenWidgetEvents>) {
   const base = createWidget<IFullscreenWidgetApi, IFullscreenWidgetEvents>(
     connection,
     {
-      displayNotification(count: number | null): Promise<void> {
-        return connection.sendMessage('display_fullscreen_notification', count);
+      setNotificationBadge(count: number | null): Promise<void> {
+        return connection.sendMessage(
+          'set_fullscreen_app_notification_badge',
+          count
+        );
       }
     }
   );

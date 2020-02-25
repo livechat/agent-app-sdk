@@ -1,5 +1,5 @@
 export interface IFullscreenWidgetApi {
-  displayNotification(count: number | null): void;
+  setNotificationBadge(count: number | null): void;
 }
 
 export interface IFullscreenWidgetEvents {}
