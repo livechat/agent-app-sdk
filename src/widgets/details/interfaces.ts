@@ -30,6 +30,7 @@ export interface ISection {
   title: string;
   components: SectionComponent[];
   imgUrl?: string;
+  openApp?: boolean;
 }
 
 export type SectionComponent =
@@ -37,14 +38,18 @@ export type SectionComponent =
   | ILabelComponent
   | ILineComponent
   | ILinkComponent
-  | ITitleComponent;
+  | ITitleComponent
+  | ICustomerComponent
+  | ITagsComponent;
 
 export enum SectionComponentType {
   Button = 'button',
   LabelValue = 'label_value',
   Title = 'title',
   Link = 'link',
-  Line = 'line'
+  Line = 'line',
+  Customer = 'customer',
+  Tags = 'tags'
 }
 
 export interface IButtonComponent {
@@ -53,6 +58,8 @@ export interface IButtonComponent {
     label: string;
     id: string;
     openApp?: boolean;
+    primary?: boolean;
+    secondary?: boolean;
   };
 }
 
@@ -61,7 +68,8 @@ export interface ILabelComponent {
   data: {
     label?: string;
     value?: string;
-    inline?: boolean;
+    iconUrl?: string;
+    url?: string;
   };
 }
 
@@ -87,5 +95,20 @@ export interface ITitleComponent {
     imgUrl?: string;
     imgSize?: 'big' | 'small';
     link?: string;
+    id?: string;
+    clickable?: boolean;
+    openApp?: boolean;
+  };
+}
+
+export interface ICustomerComponent {
+  type: SectionComponentType.Customer;
+}
+
+export interface ITagsComponent {
+  type: SectionComponentType.Tags;
+  data: {
+    tags: string[];
+    label?: string;
   };
 }
