@@ -1,6 +1,6 @@
 {
   "name": "@livechat/agent-app-sdk",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "SDK for extending LiveChat's Agent App",
   "license": "MIT",
   "repository": {
@@ -22,7 +22,10 @@
   "scripts": {
     "build": "rollup -c",
     "prebuild": "rimraf dist && rimraf types",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run test:ci && npm run build",
+    "test": "jest",
+    "test:ci": "jest --ci",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@babel/runtime": "^7.2.0",
@@ -34,8 +37,11 @@
     "@babel/core": "^7.1.5",
     "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.1.5",
+    "@babel/preset-typescript": "^7.10.4",
+    "@types/jest": "^26.0.10",
     "core-js": "^3.0.1",
     "husky": "^2.1.0",
+    "jest": "^26.4.1",
     "lint-staged": "^8.1.5",
     "prettier": "^1.17.0",
     "regenerator-runtime": "^0.13.2",
