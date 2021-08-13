@@ -1,3 +1,4 @@
-export { createDetailsWidget } from './widgets/details';
-export { createMessageBoxWidget } from './widgets/messagebox';
-export { createFullscreenWidget } from './widgets/fullscreen';
+export * from './widgets/details';
+export * from './widgets/messagebox';
+export * from './widgets/fullscreen';
+export * from './widgets/shared/customer-profile';
