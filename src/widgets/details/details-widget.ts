@@ -1,6 +1,7 @@
 import { withAmplitude } from '../shared/amplitude';
 import { withCustomerProfile } from '../shared/customer-profile';
 import { withRichMessages } from '../shared/rich-messages';
+import { withPrivateMode } from '../shared/private-mode';
 import { createWidget } from '../shared/widget';
 import { IConnection, createConnection } from '../connection';
 import assertSection from './custom-sections';
@@ -30,7 +31,9 @@ function DetailsWidget(connection: IConnection<IDetailsWidgetEvents>) {
     }
   );
 
-  const widget = withAmplitude(withRichMessages(withCustomerProfile(base)));
+  const widget = withAmplitude(
+    withRichMessages(withCustomerProfile(withPrivateMode(base)))
+  );
 
   return widget;
 }

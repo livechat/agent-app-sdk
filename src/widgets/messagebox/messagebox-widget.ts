@@ -1,6 +1,7 @@
 import { createWidget } from '../shared/widget';
 import { withAmplitude } from '../shared/amplitude';
 import { withCustomerProfile } from '../shared/customer-profile';
+import { withPrivateMode } from '../shared/private-mode';
 import { withRichMessages } from '../shared/rich-messages';
 import { IConnection, createConnection } from '../connection';
 import {
@@ -25,7 +26,9 @@ function MessageBoxWidget(connection: IConnection<IMessageBoxWidgetEvents>) {
     }
   );
 
-  const widget = withAmplitude(withRichMessages(withCustomerProfile(base)));
+  const widget = withAmplitude(
+    withRichMessages(withCustomerProfile(withPrivateMode(base)))
+  );
 
   return widget;
 }
