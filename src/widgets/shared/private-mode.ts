@@ -19,13 +19,8 @@ export const withPrivateMode: WidgetMixin<
 > = widget => {
   let threads = null;
 
-  /**
-   * Merge new threads with previously received threads
-   */
   function onPrivateMode(privateMode: IPrivateMode) {
-    console.log('@onPrivateMode', privateMode);
     threads = { ...threads, ...privateMode.threads };
-    console.log('@threads', threads);
   }
 
   widget.on('private_mode', onPrivateMode);
