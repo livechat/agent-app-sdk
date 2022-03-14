@@ -10,6 +10,7 @@ import {
   IDetailsWidgetApi,
   ISection
 } from './interfaces';
+import { PluginMessage, PluginType } from '../connection/constants';
 
 function DetailsWidget(connection: IConnection<IDetailsWidgetEvents>) {
   const base = createWidget<IDetailsWidgetApi, IDetailsWidgetEvents>(
@@ -22,7 +23,7 @@ function DetailsWidget(connection: IConnection<IDetailsWidgetEvents>) {
         return connection.sendMessage('watch_messages');
       },
       refreshSession(): Promise<void> {
-        return connection.sendMessage('plugin_loaded');
+        return connection.sendMessage(PluginMessage.Loaded);
       },
       modifySection(section: ISection): Promise<void> {
         assertSection(section);
@@ -45,7 +46,9 @@ export default function createDetailsWidget(): Promise<IDetailsWidget> {
   return createConnection()
     .then(connection => {
       widget = DetailsWidget(connection);
-      return connection.sendMessage('plugin_inited');
+      return connection.sendMessage(PluginMessage.Inited, {
+        plugin_type: PluginType.Details
+      });
     })
     .then(() => widget);
 }

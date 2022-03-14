@@ -2,6 +2,7 @@ import { createWidget } from '../shared/widget';
 import { withAmplitude } from '../shared/amplitude';
 import { IConnection, createConnection } from '../connection';
 import { IFullscreenWidgetApi, IFullscreenWidgetEvents } from './interfaces';
+import { PluginMessage, PluginType } from '../connection/constants';
 
 function FullscreenWidget(connection: IConnection<IFullscreenWidgetEvents>) {
   const base = createWidget<IFullscreenWidgetApi, IFullscreenWidgetEvents>(
@@ -22,7 +23,13 @@ export interface IFullscreenWidget
   extends ReturnType<typeof FullscreenWidget> {}
 
 export default function createFullscreenWidget(): Promise<IFullscreenWidget> {
-  return createConnection<IFullscreenWidgetEvents>().then(connection =>
-    FullscreenWidget(connection)
-  );
+  let widget: IFullscreenWidget;
+  return createConnection<IFullscreenWidgetEvents>()
+    .then(connection => {
+      widget = FullscreenWidget(connection);
+      connection.sendMessage(PluginMessage.Inited, {
+        plugin_type: PluginType.Fullscreen
+      });
+    })
+    .then(() => widget);
 }

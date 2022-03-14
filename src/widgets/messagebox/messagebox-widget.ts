@@ -9,6 +9,7 @@ import {
   IMessageBoxWidgetEvents,
   IRichMessage
 } from './interfaces';
+import { PluginType, PluginMessage } from '../connection/constants';
 
 function MessageBoxWidget(connection: IConnection<IMessageBoxWidgetEvents>) {
   const base = createWidget<IMessageBoxWidgetApi, IMessageBoxWidgetEvents>(
@@ -37,7 +38,13 @@ export interface IMessageBoxWidget
   extends ReturnType<typeof MessageBoxWidget> {}
 
 export default function createMessageBoxWidget(): Promise<IMessageBoxWidget> {
-  return createConnection<IMessageBoxWidgetEvents>().then(connection =>
-    MessageBoxWidget(connection)
-  );
+  let widget: IMessageBoxWidget;
+  return createConnection<IMessageBoxWidgetEvents>().then(connection => {
+    widget = MessageBoxWidget(connection);
+    return connection
+      .sendMessage(PluginMessage.Inited, {
+        plugin_type: PluginType.MessageBox
+      })
+      .then(() => widget);
+  });
 }
