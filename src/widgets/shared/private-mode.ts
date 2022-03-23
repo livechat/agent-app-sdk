@@ -7,7 +7,7 @@ export interface IPrivateMode {
 }
 
 export interface IPrivateModeApi {
-  getPrivateModeThreads(): IPrivateMode | null;
+  getPrivateModeState(): IPrivateMode | null;
 }
 
 export interface IPrivateModeEvents {
@@ -28,7 +28,7 @@ export const withPrivateMode: WidgetMixin<
 
   return {
     ...widget,
-    getPrivateModeThreads(): IPrivateMode | null {
+    getPrivateModeState(): IPrivateMode | null {
       return threads;
     }
   };

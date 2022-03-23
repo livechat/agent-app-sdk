@@ -185,7 +185,7 @@ widget.modifySection(section);
 
 The `title` of a given section has to match the one specified in the initial state. Otherwise, the section won't change. Also, the Agent App ignores the commands without valid section definitions. Make sure that the definition you're sending is correct.
 
-#### `getPrivateModeThreads(): IPrivateMode | null`
+#### `getPrivateModeState(): IPrivateMode | null`
 
 Gets threads with private mode recorded most recently. Returns the `IPrivateMode` object, which is identical to the one emitted by the `private_mode` event or `null` (if no profile was registered). It may contain information about multiple threads, for example, when widget was initialized after agent has toggled private mode for some threads.
 
@@ -247,7 +247,7 @@ widget.putMessage(richMessage);
 
 Gets the customer profile recorded most recently. Returns the `ICustomerProfile` object, which is identical to the one emitted by the `customer_profile` event or `null` (if no profile was registered).
 
-#### `getPrivateModeThreads(): IPrivateMode | null`
+#### `getPrivateModeState(): IPrivateMode | null`
 
 Gets threads with private mode recorded most recently. Returns the `IPrivateMode` object, which is identical to the one emitted by the `private_mode` event or `null` (if no profile was registered). It may contain information about multiple threads, for example, when widget was initialized after agent has toggled private mode for some threads.
 
