@@ -9,6 +9,7 @@ export interface IPrivateMode {
 export interface IPrivateModeApi {
   getPrivateModeThreads(): IPrivateMode | null;
 }
+
 export interface IPrivateModeEvents {
   private_mode: IPrivateMode;
 }
