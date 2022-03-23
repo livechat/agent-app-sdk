@@ -29,7 +29,7 @@ export const withPrivateMode: WidgetMixin<
   return {
     ...widget,
     getPrivateModeState(): IPrivateMode | null {
-      return threads;
+      return { source: 'chats', threads };
     }
   };
 };
