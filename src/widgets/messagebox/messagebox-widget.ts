@@ -38,13 +38,11 @@ export interface IMessageBoxWidget
   extends ReturnType<typeof MessageBoxWidget> {}
 
 export default function createMessageBoxWidget(): Promise<IMessageBoxWidget> {
-  let widget: IMessageBoxWidget;
   return createConnection<IMessageBoxWidgetEvents>().then(connection => {
-    widget = MessageBoxWidget(connection);
     return connection
       .sendMessage(PluginMessage.Inited, {
         plugin_type: PluginType.MessageBox
       })
-      .then(() => widget);
+      .then(() => MessageBoxWidget(connection));
   });
 }
