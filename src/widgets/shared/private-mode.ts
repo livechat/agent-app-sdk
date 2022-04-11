@@ -1,17 +1,17 @@
 import { KeyMap } from '../../utils/types';
-import { WidgetMixin, Widget, AnyWidgetApi } from './widget';
+import { WidgetMixin } from './widget';
 
-export interface IPrivateModeUpdate {
+export interface IPrivateModeData {
   threads: KeyMap<boolean>;
   source: 'chats';
 }
 
 export interface IPrivateModeApi {
-  getPrivateModeState(): IPrivateModeUpdate | null;
+  getPrivateModeState(): IPrivateModeData | null;
 }
 
 export interface IPrivateModeEvents {
-  private_mode: IPrivateModeUpdate;
+  private_mode: IPrivateModeData;
 }
 
 export const withPrivateMode: WidgetMixin<
@@ -20,7 +20,7 @@ export const withPrivateMode: WidgetMixin<
 > = widget => {
   let threads = null;
 
-  function onPrivateMode(privateMode: IPrivateModeUpdate) {
+  function onPrivateMode(privateMode: IPrivateModeData) {
     threads = { ...threads, ...privateMode.threads };
   }
 
@@ -28,7 +28,7 @@ export const withPrivateMode: WidgetMixin<
 
   return {
     ...widget,
-    getPrivateModeState(): IPrivateModeUpdate | null {
+    getPrivateModeState(): IPrivateModeData | null {
       return { source: 'chats', threads };
     }
   };

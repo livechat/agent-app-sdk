@@ -140,7 +140,7 @@ The `buttonId` property reflects the `id` specified for the button in the sectio
 Emitted when agent toggles private mode in Chats section. The handler gets the following payload:
 
 ```ts
-interface IPrivateMode {
+interface IPrivateModeData {
   threads: {
     [key: string]: boolean;
   };
@@ -185,9 +185,9 @@ widget.modifySection(section);
 
 The `title` of a given section has to match the one specified in the initial state. Otherwise, the section won't change. Also, the Agent App ignores the commands without valid section definitions. Make sure that the definition you're sending is correct.
 
-#### `getPrivateModeState(): IPrivateMode | null`
+#### `getPrivateModeState(): IPrivateModeData | null`
 
-Gets threads with private mode recorded most recently. Returns the `IPrivateMode` object, which is identical to the one emitted by the `private_mode` event or `null` (if no profile was registered). It may contain information about multiple threads, for example, when widget was initialized after agent has toggled private mode for some threads.
+Gets threads with private mode recorded most recently. Returns the `IPrivateModeData` object, which is identical to the one emitted by the `private_mode` event or `null` (if no profile was registered). It may contain information about multiple threads, for example, when widget was initialized after agent has toggled private mode for some threads.
 
 ```ts
 {
@@ -213,7 +213,7 @@ Emitted after the message is sent by the agent. Keep in mind that the message ha
 Emitted when agent toggles private mode in Chats section. The handler gets the following payload:
 
 ```ts
-interface IPrivateMode {
+interface IPrivateModeData {
   threads: {
     [key: string]: boolean;
   };
@@ -247,9 +247,9 @@ widget.putMessage(richMessage);
 
 Gets the customer profile recorded most recently. Returns the `ICustomerProfile` object, which is identical to the one emitted by the `customer_profile` event or `null` (if no profile was registered).
 
-#### `getPrivateModeState(): IPrivateMode | null`
+#### `getPrivateModeState(): IPrivateModeData | null`
 
-Gets threads with private mode recorded most recently. Returns the `IPrivateMode` object, which is identical to the one emitted by the `private_mode` event or `null` (if no profile was registered). It may contain information about multiple threads, for example, when widget was initialized after agent has toggled private mode for some threads.
+Gets threads with private mode recorded most recently. Returns the `IPrivateModeData` object, which is identical to the one emitted by the `private_mode` event or `null` (if no profile was registered). It may contain information about multiple threads, for example, when widget was initialized after agent has toggled private mode for some threads.
 
 ```ts
 {
