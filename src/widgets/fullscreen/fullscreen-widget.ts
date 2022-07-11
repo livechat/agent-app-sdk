@@ -23,11 +23,11 @@ export interface IFullscreenWidget
   extends ReturnType<typeof FullscreenWidget> {}
 
 export default function createFullscreenWidget(): Promise<IFullscreenWidget> {
-  let widget: IFullscreenWidget;
-  return createConnection<IFullscreenWidgetEvents>()
-    .then(connection => {
-      return connection.sendMessage(PluginMessage.Inited, {
+  return createConnection<IFullscreenWidgetEvents>().then(connection => {
+    return connection
+      .sendMessage(PluginMessage.Inited, {
         plugin_type: PluginType.Fullscreen
-      }).then(() => FullscreenWidget(connection));
-    });
+      })
+      .then(() => FullscreenWidget(connection));
+  });
 }
