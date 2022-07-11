@@ -26,10 +26,8 @@ export default function createFullscreenWidget(): Promise<IFullscreenWidget> {
   let widget: IFullscreenWidget;
   return createConnection<IFullscreenWidgetEvents>()
     .then(connection => {
-      widget = FullscreenWidget(connection);
-      connection.sendMessage(PluginMessage.Inited, {
+      return connection.sendMessage(PluginMessage.Inited, {
         plugin_type: PluginType.Fullscreen
-      });
-    })
-    .then(() => widget);
+      }).then(() => FullscreenWidget(connection));
+    });
 }
