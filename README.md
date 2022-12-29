@@ -1,3 +1,5 @@
+**Note: if you're developing a new widget, you should use the [Products SDK](https://github.com/livechat/products-sdk) instead. This package isn't actively maintained anymore.**
+
 # LiveChat Agent App SDK
 
 This SDK is a set of tools that will help you integrate your apps with the [LiveChat Agent App](https://my.livechatinc.com/).
