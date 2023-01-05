@@ -1,6 +1,7 @@
 import { createWidget } from '../shared/widget';
 import { withAmplitude } from '../shared/amplitude';
 import { withCustomerProfile } from '../shared/customer-profile';
+import { withPrivateMode } from '../shared/private-mode';
 import { withRichMessages } from '../shared/rich-messages';
 import { IConnection, createConnection } from '../connection';
 import {
@@ -8,6 +9,7 @@ import {
   IMessageBoxWidgetEvents,
   IRichMessage
 } from './interfaces';
+import { PluginType, PluginMessage } from '../connection/constants';
 
 function MessageBoxWidget(connection: IConnection<IMessageBoxWidgetEvents>) {
   const base = createWidget<IMessageBoxWidgetApi, IMessageBoxWidgetEvents>(
@@ -25,7 +27,9 @@ function MessageBoxWidget(connection: IConnection<IMessageBoxWidgetEvents>) {
     }
   );
 
-  const widget = withAmplitude(withRichMessages(withCustomerProfile(base)));
+  const widget = withAmplitude(
+    withRichMessages(withCustomerProfile(withPrivateMode(base)))
+  );
 
   return widget;
 }
@@ -34,7 +38,11 @@ export interface IMessageBoxWidget
   extends ReturnType<typeof MessageBoxWidget> {}
 
 export default function createMessageBoxWidget(): Promise<IMessageBoxWidget> {
-  return createConnection<IMessageBoxWidgetEvents>().then(connection =>
-    MessageBoxWidget(connection)
-  );
+  return createConnection<IMessageBoxWidgetEvents>().then(connection => {
+    return connection
+      .sendMessage(PluginMessage.Inited, {
+        plugin_type: PluginType.MessageBox
+      })
+      .then(() => MessageBoxWidget(connection));
+  });
 }

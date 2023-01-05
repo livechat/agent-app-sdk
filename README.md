@@ -137,6 +137,21 @@ interface ICustomerDetailsSectionButtonClick {
 
 The `buttonId` property reflects the `id` specified for the button in the section definition.
 
+#### `private_mode`
+
+Emitted when agent toggles private mode in Chats section. The handler gets the following payload:
+
+```ts
+interface IPrivateModeData {
+  threads: {
+    [key: string]: boolean;
+  };
+  source: 'chats';
+}
+```
+
+_String_ key is thread ID and boolean represents state of private mode. True means enabled private mode, false means disabled private mode.
+
 ### Methods
 
 #### `getCustomerProfile(): ICustomerProfile | null`
@@ -172,6 +187,17 @@ widget.modifySection(section);
 
 The `title` of a given section has to match the one specified in the initial state. Otherwise, the section won't change. Also, the Agent App ignores the commands without valid section definitions. Make sure that the definition you're sending is correct.
 
+#### `getPrivateModeState(): IPrivateModeData | null`
+
+Gets threads with private mode recorded most recently. Returns the `IPrivateModeData` object, which is identical to the one emitted by the `private_mode` event or `null` (if no profile was registered). It may contain information about multiple threads, for example, when widget was initialized after agent has toggled private mode for some threads.
+
+```ts
+{
+  source: 'chats',
+  threads: { R80Q1FDEGX: true, R80Q1HDKP4: true }
+}
+```
+
 ## MessageBox widget (`IMessageBoxWidget`)
 
 ### Events
@@ -183,6 +209,21 @@ Emitted after the widget is opened in the MessageBox. The handler will get a `IC
 #### `message_sent`
 
 Emitted after the message is sent by the agent. Keep in mind that the message has to be set with [`putMessage`] method in order to be sent.
+
+#### `private_mode`
+
+Emitted when agent toggles private mode in Chats section. The handler gets the following payload:
+
+```ts
+interface IPrivateModeData {
+  threads: {
+    [key: string]: boolean;
+  };
+  source: 'chats';
+}
+```
+
+_String_ key is thread ID and boolean represents state of private mode. True means enabled private mode, false means disabled private mode.
 
 ### Methods
 
@@ -207,6 +248,17 @@ widget.putMessage(richMessage);
 #### `getCustomerProfile(): ICustomerProfile | null`
 
 Gets the customer profile recorded most recently. Returns the `ICustomerProfile` object, which is identical to the one emitted by the `customer_profile` event or `null` (if no profile was registered).
+
+#### `getPrivateModeState(): IPrivateModeData | null`
+
+Gets threads with private mode recorded most recently. Returns the `IPrivateModeData` object, which is identical to the one emitted by the `private_mode` event or `null` (if no profile was registered). It may contain information about multiple threads, for example, when widget was initialized after agent has toggled private mode for some threads.
+
+```ts
+{
+  source: 'chats',
+  threads: { R80Q1FDEGX: true, R80Q1HDKP4: true }
+}
+```
 
 ### Rich Message object format
 
