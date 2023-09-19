@@ -118,7 +118,7 @@ interface ICustomerProfile {
   email?: string;
   chat: {
     id?: string;
-    groupID: string;
+    groupID: number;
     preChatSurvey: { question: string; answer: string }[];
   };
   source: 'chats' | 'archives' | 'customers';
